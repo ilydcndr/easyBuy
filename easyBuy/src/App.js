@@ -6,9 +6,9 @@ import { Container, Row, Col, ToastHeader } from "reactstrap";
 
 class App extends React.Component {
   state = {
-    sectigim: "",
+    selectedCategory: "",
     products: [],
-    Cart:[]
+    Cart: []
   };
 
   componentDidMount() {
@@ -16,22 +16,25 @@ class App extends React.Component {
   }
 
   /**ayni üründen 2 kere eklediğimde sepet toplam sayısında gözükmesin o ürünün quantity değeri artsın yani sepete girince görüntüleyelim */
-  addToCart=(product)=>{
-    let count=this.state.Cart.length
-    if(product.productName){
-      this.setState({
-        count:count+=1
-      })
+  addToCart = product => {
+    const Cart=this.state.Cart
+    const addedProduct =Cart.find(c => {
+      return c.id === product.id;
+    });
+    if (addedProduct) {
+      addedProduct.quantity += 1;
     }
-    this.setState({
-      Cart:[...this.state.Cart].concat({...product})
-    },()=>{console.log(this.state.Cart)})
-  }
+    else{
+      this.setState({
+        Cart: [...Cart].concat({ ...product, quantity: 1 })
+      });
+    }
+  };
 
-  getProducts = (categoryId) => {
-    let url="http://localhost:3000/products"
-    if(categoryId){
-     url+="?categoryId="+categoryId
+  getProducts = categoryId => {
+    let url = "http://localhost:3000/products";
+    if (categoryId) {
+      url += "?categoryId=" + categoryId;
     }
     fetch(url)
       .then(response => response.json())
@@ -41,7 +44,7 @@ class App extends React.Component {
   tiklandiginda = Categori => {
     this.getProducts(Categori.id);
     this.setState({
-      sectigim: Categori.categoryName
+      selectedCategory: Categori.categoryName
     });
   };
 
@@ -51,9 +54,7 @@ class App extends React.Component {
         <Container>
           <Row>
             <Col xl="12">
-              <Navigation title="Navigation" 
-              Cart={this.state.Cart}
-              />
+              <Navigation title="Navigation" Cart={this.state.Cart} />
             </Col>
           </Row>
           <Row>
@@ -61,14 +62,14 @@ class App extends React.Component {
               <Categories
                 title="Categories"
                 tiklandiginda={this.tiklandiginda}
-                sectigim={this.state.sectigim}
+                selectedCategory={this.state.selectedCategory}
               />
             </Col>
 
             <Col xl="8">
               <Products
                 title="Products"
-                sectigim={this.state.sectigim}
+                selectedCategory={this.state.selectedCategory}
                 products={this.state.products}
                 addToCart={this.addToCart}
               />

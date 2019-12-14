@@ -1,14 +1,12 @@
 import React, { Component } from "react";
-import { Table,Button } from "reactstrap";
+import { Table, Button } from "reactstrap";
 
 class Products extends Component {
-
-
   render() {
     return (
       <div>
         <h2>
-          {this.props.title}--{this.props.sectigim}
+          {this.props.title}--{this.props.selectedCategory}
         </h2>
 
         <Table>
@@ -24,13 +22,15 @@ class Products extends Component {
           <tbody>
             {this.props.products.map(product => {
               return (
-                <tr>
+                <tr key={product.id}>
                   <th scope="row">{product.id}</th>
                   <td>{product.productName}</td>
                   <td>{product.quantityPerUnit}</td>
                   <td>{product.unitPrice}</td>
                   <td>{product.unitsInStock}</td>
-                  <td onClick={()=>this.props.addToCart(product)} ><Button color="success">Add</Button ></td>
+                  <td onClick={() => this.props.addToCart(product)}>
+                    <Button color="success">Add</Button>
+                  </td>
                 </tr>
               );
             })}

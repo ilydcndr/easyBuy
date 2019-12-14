@@ -22,7 +22,7 @@ class Categories extends Component {
         <ListGroup>
           {this.state.Categories.map(Category => {
             return (
-              <ListGroupItem onClick={() => this.props.tiklandiginda(Category)} active={Category.categoryName===this.props.sectigim?true:false}>
+              <ListGroupItem key={Category.id} onClick={() => this.props.tiklandiginda(Category)} active={Category.categoryName===this.props.selectedCategory?true:false}>
                 {Category.categoryName}
               </ListGroupItem>
             );
