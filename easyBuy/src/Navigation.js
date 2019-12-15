@@ -32,7 +32,7 @@ class Navigation extends Component {
     return (
       <div>
         <Navbar color="light" light expand="md">
-          <NavbarBrand href="/">reactstrap</NavbarBrand>
+          <NavbarBrand href="/"><h2>easyBUY</h2></NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
@@ -44,7 +44,7 @@ class Navigation extends Component {
                   GitHub
                 </NavLink>
               </NavItem>
-              <Cartsummary Cart={this.props.Cart}/>
+              <Cartsummary Cart={this.props.Cart} deleteAll={this.props.deleteAll}/>
             </Nav>
           </Collapse>
         </Navbar>

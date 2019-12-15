@@ -2,7 +2,8 @@ import React from "react";
 import Navigation from "./Navigation";
 import Categories from "./Categories";
 import Products from "./Products";
-import { Container, Row, Col, ToastHeader } from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
+import alertify from "alertifyjs";
 
 class App extends React.Component {
   state = {
@@ -14,22 +15,6 @@ class App extends React.Component {
   componentDidMount() {
     this.getProducts();
   }
-
-  /**ayni üründen 2 kere eklediğimde sepet toplam sayısında gözükmesin o ürünün quantity değeri artsın yani sepete girince görüntüleyelim */
-  addToCart = product => {
-    const Cart=this.state.Cart
-    const addedProduct =Cart.find(c => {
-      return c.id === product.id;
-    });
-    if (addedProduct) {
-      addedProduct.quantity += 1;
-    }
-    else{
-      this.setState({
-        Cart: [...Cart].concat({ ...product, quantity: 1 })
-      });
-    }
-  };
 
   getProducts = categoryId => {
     let url = "http://localhost:3000/products";
@@ -48,13 +33,39 @@ class App extends React.Component {
     });
   };
 
+  /**ayni üründen 2 kere eklediğimde sepet toplam sayısında gözükmesin o ürünün quantity değeri artsın yani sepete girince görüntüleyelim */
+  addToCart = product => {
+    const Cart = this.state.Cart;
+    const addedProduct = Cart.find(c => {
+      return c.id === product.id;
+    });
+    if (addedProduct) {
+      addedProduct.quantity += 1;
+      this.setState({ Cart: Cart });
+    } else {
+      this.setState({
+        Cart: [...Cart].concat({ ...product, quantity: 1 })
+      });
+    }
+    alertify.success(product.productName +" "+"added to your Cart!");
+  };
+
+  deleteAll = product => {
+    const notDeleted=this.state.Cart.filter(c => {
+      return c.id !== product.id;
+    });
+   this.setState({
+     Cart:notDeleted
+   })
+  };
+
   render() {
     return (
       <div>
         <Container>
           <Row>
             <Col xl="12">
-              <Navigation title="Navigation" Cart={this.state.Cart} />
+              <Navigation title="Navigation" Cart={this.state.Cart} deleteAll={this.deleteAll}/>
             </Col>
           </Row>
           <Row>
