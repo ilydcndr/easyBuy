@@ -6,6 +6,7 @@ import { Container, Row, Col } from "reactstrap";
 import alertify from "alertifyjs";
 import { Route, Switch } from "react-router-dom";
 import Cart from "./Cart";
+import NotFound from "./NotFound";
 
 class App extends React.Component {
   state = {
@@ -96,7 +97,14 @@ class App extends React.Component {
                     />
                   )}
                 ></Route>
-                <Route exact path="Cart/" component={Cart}></Route>
+                <Route exact path="/cart" component={()=>(
+                  <Cart
+                  Cart={this.state.Cart}
+                  addToCart={this.addToCart}
+                  />
+                )}
+                 ></Route>
+                <Route component={NotFound}></Route>
               </Switch>
             </Col>
           </Row>

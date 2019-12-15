@@ -36,7 +36,7 @@ class Cartsummary extends Component {
           <DropdownItem divider />
           <DropdownItem>Reset</DropdownItem>
           <DropdownItem>
-            <Link to="/Cart">Sepete Git</Link>
+            <Link to="cart">Sepete Git</Link>
           </DropdownItem>
         </DropdownMenu>
       </UncontrolledDropdown>
