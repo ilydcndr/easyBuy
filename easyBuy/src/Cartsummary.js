@@ -7,8 +7,7 @@ import {
   Badge,
   NavbarText
 } from "reactstrap";
-
-
+import { Link } from "react-router-dom";
 
 class Cartsummary extends Component {
   fullCart() {
@@ -25,12 +24,20 @@ class Cartsummary extends Component {
               <DropdownItem key={selectedProduct.id}>
                 {selectedProduct.productName}
                 <Badge color="warning">{selectedProduct.quantity}</Badge>
-                <Badge onClick={()=>this.props.deleteAll(product)} color="danger">Delete</Badge>
+                <Badge
+                  onClick={() => this.props.deleteAll(selectedProduct)}
+                  color="danger"
+                >
+                  Delete
+                </Badge>
               </DropdownItem>
             );
           })}
           <DropdownItem divider />
           <DropdownItem>Reset</DropdownItem>
+          <DropdownItem>
+            <Link to="/Cart">Sepete Git</Link>
+          </DropdownItem>
         </DropdownMenu>
       </UncontrolledDropdown>
     );

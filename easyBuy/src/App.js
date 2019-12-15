@@ -4,6 +4,8 @@ import Categories from "./Categories";
 import Products from "./Products";
 import { Container, Row, Col } from "reactstrap";
 import alertify from "alertifyjs";
+import { Route, Switch } from "react-router-dom";
+import Cart from "./Cart";
 
 class App extends React.Component {
   state = {
@@ -47,16 +49,16 @@ class App extends React.Component {
         Cart: [...Cart].concat({ ...product, quantity: 1 })
       });
     }
-    alertify.success(product.productName +" "+"added to your Cart!");
+    alertify.success(product.productName + " " + "added to your Cart!");
   };
 
   deleteAll = product => {
-    const notDeleted=this.state.Cart.filter(c => {
+    const notDeleted = this.state.Cart.filter(c => {
       return c.id !== product.id;
     });
-   this.setState({
-     Cart:notDeleted
-   })
+    this.setState({
+      Cart: notDeleted
+    });
   };
 
   render() {
@@ -65,7 +67,11 @@ class App extends React.Component {
         <Container>
           <Row>
             <Col xl="12">
-              <Navigation title="Navigation" Cart={this.state.Cart} deleteAll={this.deleteAll}/>
+              <Navigation
+                title="Navigation"
+                Cart={this.state.Cart}
+                deleteAll={this.deleteAll}
+              />
             </Col>
           </Row>
           <Row>
@@ -76,14 +82,22 @@ class App extends React.Component {
                 selectedCategory={this.state.selectedCategory}
               />
             </Col>
-
             <Col xl="8">
-              <Products
-                title="Products"
-                selectedCategory={this.state.selectedCategory}
-                products={this.state.products}
-                addToCart={this.addToCart}
-              />
+              <Switch>
+                <Route
+                  exact
+                  path="/"
+                  component={() => (
+                    <Products
+                      title="Products"
+                      selectedCategory={this.state.selectedCategory}
+                      products={this.state.products}
+                      addToCart={this.addToCart}
+                    />
+                  )}
+                ></Route>
+                <Route exact path="Cart/" component={Cart}></Route>
+              </Switch>
             </Col>
           </Row>
         </Container>
