@@ -62,6 +62,12 @@ class App extends React.Component {
     });
   };
 
+  Reset=()=>{
+    this.setState({
+      Cart:[]
+    })
+  }
+
   render() {
     return (
       <div>
@@ -72,6 +78,7 @@ class App extends React.Component {
                 title="Navigation"
                 Cart={this.state.Cart}
                 deleteAll={this.deleteAll}
+                Reset={this.Reset}
               />
             </Col>
           </Row>

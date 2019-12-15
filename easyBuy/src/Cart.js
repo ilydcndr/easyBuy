@@ -25,7 +25,9 @@ export default class Cart extends Component {
                   <td>{selectedItem.UnitPrice}</td>
                   <td>{selectedItem.UnitInStock}</td>
                   <td>{selectedItem.quantity}</td>
-                  <td><Button>DELETE</Button></td>
+                  <td><Button>Delete</Button></td>
+                  <td><Button>Less</Button></td>
+                  <td><Button>More</Button></td>
                 </tr>
               );
             })}

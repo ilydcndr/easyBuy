@@ -7,7 +7,7 @@ import {
   Badge,
   NavbarText
 } from "reactstrap";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom"
 
 class Cartsummary extends Component {
   fullCart() {
@@ -22,21 +22,22 @@ class Cartsummary extends Component {
           {this.props.Cart.map(selectedProduct => {
             return (
               <DropdownItem key={selectedProduct.id}>
-                {selectedProduct.productName}
+                {selectedProduct.productName}<span> </span>
                 <Badge color="warning">{selectedProduct.quantity}</Badge>
+                <span> </span>
                 <Badge
                   onClick={() => this.props.deleteAll(selectedProduct)}
                   color="danger"
                 >
-                  Delete
+                  X
                 </Badge>
               </DropdownItem>
             );
           })}
           <DropdownItem divider />
-          <DropdownItem>Reset</DropdownItem>
+          <DropdownItem onClick={()=>this.props.Reset()}> <Badge color="danger">Reset Your Cart !</Badge></DropdownItem>
           <DropdownItem>
-            <Link to="cart">Sepete Git</Link>
+            <Link to="/cart">Go to Your Cart!</Link>
           </DropdownItem>
         </DropdownMenu>
       </UncontrolledDropdown>
