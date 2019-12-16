@@ -63,8 +63,8 @@ class App extends React.Component {
       return c.id !== product.id;
     }); 
       this.setState({
-        Cart: notDeleted,
-        total:0
+        total:0,
+        Cart: notDeleted
       });
       setTimeout(() => {
           this.totalPrice() 
@@ -99,7 +99,7 @@ class App extends React.Component {
   };
 
   totalPrice = () => {
-    let total=this.state.total
+    let total=0
     this.state.Cart.forEach(selectedItem => {
       let quantity = selectedItem.quantity;
       let perPrice = selectedItem.unitPrice;
