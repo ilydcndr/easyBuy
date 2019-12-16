@@ -14,7 +14,7 @@ class App extends React.Component {
     selectedCategory: "",
     products: [],
     Cart: [],
-    total:""
+    total:0
   };
 
   componentDidMount() {
@@ -91,12 +91,12 @@ class App extends React.Component {
   };
 
   totalPrice = () => {
+    let total=this.state.total
     this.state.Cart.forEach(selectedItem => {
-      let total=this.state.total
       let quantity = selectedItem.quantity;
       let perPrice = selectedItem.unitPrice;
       this.setState({
-        total:total+=quantity * perPrice
+        total:total+=quantity *perPrice
       });
     });
   };
