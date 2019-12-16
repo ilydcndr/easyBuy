@@ -10,7 +10,7 @@ import {
   
 } from "reactstrap";
 import Cartsummary from "./Cartsummary";
-import {Link} from 'react-router-dom'
+
 
 class Navigation extends Component {
   constructor(props) {
@@ -29,7 +29,7 @@ class Navigation extends Component {
     });
   }
   render() {
-    const { navCollapsed } = this.state;
+    
     return (
       <div>
         <Navbar color="light" light expand="md">
