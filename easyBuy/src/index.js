@@ -5,6 +5,7 @@ import * as serviceWorker from "./serviceWorker";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "alertifyjs/build/css/alertify.min.css";
 import { BrowserRouter } from "react-router-dom";
+import 'react-confirm-alert/src/react-confirm-alert.css'
 
 ReactDOM.render(
   <BrowserRouter>

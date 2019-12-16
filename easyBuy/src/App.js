@@ -7,6 +7,7 @@ import alertify from "alertifyjs";
 import { Route, Switch } from "react-router-dom";
 import Cart from "./Cart";
 import NotFound from "./NotFound";
+import { confirmAlert } from 'react-confirm-alert';
 
 class App extends React.Component {
   state = {
@@ -62,12 +63,31 @@ class App extends React.Component {
     });
   };
 
-  Reset=()=>{
-    this.setState({
-      Cart:[]
-    })
-  }
-
+  Reset = () => {
+    confirmAlert({
+      title: <h1>Are You Sure ?</h1>,
+      message: 'You Will Reset Your Cart!',
+      buttons: [
+        {
+          label: 'Yes',
+          onClick: () => {
+            this.setState({
+              Cart:[]
+            })
+          }
+        },
+        {
+          label: 'No',
+          onClick: () => {
+            this.setState({
+              Cart:this.state.Cart
+            })
+          }
+        }
+      ]
+    });
+  };
+  
   render() {
     return (
       <div>
@@ -104,13 +124,13 @@ class App extends React.Component {
                     />
                   )}
                 ></Route>
-                <Route exact path="/cart" component={()=>(
-                  <Cart
-                  Cart={this.state.Cart}
-                  addToCart={this.addToCart}
-                  />
-                )}
-                 ></Route>
+                <Route
+                  exact
+                  path="/cart"
+                  component={() => (
+                    <Cart Cart={this.state.Cart} addToCart={this.addToCart} />
+                  )}
+                ></Route>
                 <Route component={NotFound}></Route>
               </Switch>
             </Col>
