@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.js": "/easyBuy/static/js/main.5d2cd045.chunk.js",
-    "main.js.map": "/easyBuy/static/js/main.5d2cd045.chunk.js.map",
+    "main.js": "/easyBuy/static/js/main.0a43b54d.chunk.js",
+    "main.js.map": "/easyBuy/static/js/main.0a43b54d.chunk.js.map",
     "runtime-main.js": "/easyBuy/static/js/runtime-main.a8228a12.js",
     "runtime-main.js.map": "/easyBuy/static/js/runtime-main.a8228a12.js.map",
     "static/css/2.3542c476.chunk.css": "/easyBuy/static/css/2.3542c476.chunk.css",
     "static/js/2.fa6d4260.chunk.js": "/easyBuy/static/js/2.fa6d4260.chunk.js",
     "static/js/2.fa6d4260.chunk.js.map": "/easyBuy/static/js/2.fa6d4260.chunk.js.map",
     "index.html": "/easyBuy/index.html",
-    "precache-manifest.2d2c4c6b9b670a94e8d21a21f479235b.js": "/easyBuy/precache-manifest.2d2c4c6b9b670a94e8d21a21f479235b.js",
+    "precache-manifest.cab3a964127ed5184cce8a23e6dc4028.js": "/easyBuy/precache-manifest.cab3a964127ed5184cce8a23e6dc4028.js",
     "service-worker.js": "/easyBuy/service-worker.js",
     "static/css/2.3542c476.chunk.css.map": "/easyBuy/static/css/2.3542c476.chunk.css.map",
     "static/js/2.fa6d4260.chunk.js.LICENSE": "/easyBuy/static/js/2.fa6d4260.chunk.js.LICENSE"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.a8228a12.js",
     "static/css/2.3542c476.chunk.css",
     "static/js/2.fa6d4260.chunk.js",
-    "static/js/main.5d2cd045.chunk.js"
+    "static/js/main.0a43b54d.chunk.js"
   ]
 }
