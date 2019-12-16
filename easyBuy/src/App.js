@@ -136,7 +136,7 @@ class App extends React.Component {
               <Switch>
                 <Route
                   exact
-                  path="/"
+                  path="/easyBuy"
                   component={() => (
                     <Products
                       title="Products"
