@@ -2,22 +2,7 @@ import React, { Component } from "react";
 import { Table, Button } from "reactstrap";
 
 export default class Cart extends Component {
-
-  totalPrice = () => {
-    let total = 0;
-    this.props.Cart.forEach(selectedItem => {
-      let quantity = selectedItem.quantity;
-      let perPrice = selectedItem.unitPrice;
-      total += quantity * perPrice;
-      console.log(quantity)
-      console.log(perPrice)
-      console.log(total)
-      return (
-        total
-        );
-    });
-  };
-
+ 
   render() {
     return (
       <div>
@@ -47,7 +32,7 @@ export default class Cart extends Component {
               );
             })}
           </tbody>
-          <tr> Total Price: {this.totalPrice()}</tr> 
+          <tr> Total Price: {this.props.total}</tr>
         </Table>
       </div>
     );

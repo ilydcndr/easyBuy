@@ -45,7 +45,7 @@ class Navigation extends Component {
                   GitHub
                 </NavLink>
               </NavItem>
-              <Cartsummary Cart={this.props.Cart} deleteAll={this.props.deleteAll} Reset={this.props.Reset}/>
+              <Cartsummary Cart={this.props.Cart} deleteAll={this.props.deleteAll} Reset={this.props.Reset} totalPrice={this.props.totalPrice}/>
             </Nav>
           </Collapse>
         </Navbar>

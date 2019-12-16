@@ -13,7 +13,8 @@ class App extends React.Component {
   state = {
     selectedCategory: "",
     products: [],
-    Cart: []
+    Cart: [],
+    total:""
   };
 
   componentDidMount() {
@@ -72,7 +73,8 @@ class App extends React.Component {
           label: 'Yes',
           onClick: () => {
             this.setState({
-              Cart:[]
+              Cart:[],
+              total:0
             })
           }
         },
@@ -87,6 +89,17 @@ class App extends React.Component {
       ]
     });
   };
+
+  totalPrice = () => {
+    this.state.Cart.forEach(selectedItem => {
+      let total=this.state.total
+      let quantity = selectedItem.quantity;
+      let perPrice = selectedItem.unitPrice;
+      this.setState({
+        total:total+=quantity * perPrice
+      });
+    });
+  };
   
   render() {
     return (
@@ -99,6 +112,7 @@ class App extends React.Component {
                 Cart={this.state.Cart}
                 deleteAll={this.deleteAll}
                 Reset={this.Reset}
+                totalPrice={this.totalPrice}
               />
             </Col>
           </Row>
@@ -128,7 +142,7 @@ class App extends React.Component {
                   exact
                   path="/cart"
                   component={() => (
-                    <Cart Cart={this.state.Cart} addToCart={this.addToCart} />
+                    <Cart Cart={this.state.Cart} addToCart={this.addToCart} total={this.state.total}/>
                   )}
                 ></Route>
                 <Route component={NotFound}></Route>

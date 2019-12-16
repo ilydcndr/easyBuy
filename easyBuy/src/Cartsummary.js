@@ -5,7 +5,9 @@ import {
   DropdownMenu,
   DropdownItem,
   Badge,
-  NavbarText
+  NavbarText,
+  NavLink,
+  Button
 } from "reactstrap";
 import { Link } from "react-router-dom";
 
@@ -41,7 +43,9 @@ class Cartsummary extends Component {
             <Badge color="danger">Reset Your Cart !</Badge>
           </DropdownItem>
           <DropdownItem divider />
-          <Link to="/cart"> Go to Your Cart! </Link>
+          <Link to="/cart">   
+            <Button color="primary" className="ml-2" outline onClick={()=>this.props.totalPrice()}> Go to Your Cart! </Button>
+          </Link>
         </DropdownMenu>
       </UncontrolledDropdown>
     );
