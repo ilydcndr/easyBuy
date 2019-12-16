@@ -10,6 +10,7 @@ import {
   
 } from "reactstrap";
 import Cartsummary from "./Cartsummary";
+import {Link} from 'react-router-dom'
 
 class Navigation extends Component {
   constructor(props) {
@@ -37,10 +38,10 @@ class Navigation extends Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">Components</NavLink>
+                <NavLink href="/">Home Page</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="https://github.com/reactstrap/reactstrap">
+                <NavLink href="https://github.com/ilydcndr/easyBuy">
                   GitHub
                 </NavLink>
               </NavItem>

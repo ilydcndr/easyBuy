@@ -25,8 +25,8 @@ class Products extends Component {
                 <tr key={product.id}>
                   <th scope="row">{product.id}</th>
                   <td>{product.productName}</td>
-                  <td>{product.quantityPerUnit}</td>
                   <td>{product.unitPrice}</td>
+                  <td>{product.quantityPerUnit}</td>          
                   <td>{product.unitsInStock}</td>
                   <td onClick={() => this.props.addToCart(product)}>
                     <Button color="success">Add</Button>
