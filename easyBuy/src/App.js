@@ -40,6 +40,7 @@ class App extends React.Component {
 
   /**ayni üründen 2 kere eklediğimde sepet toplam sayısında gözükmesin o ürünün quantity değeri artsın yani sepete girince görüntüleyelim */
   addToCart = product => {
+   
     const Cart = this.state.Cart;
     const addedProduct = Cart.find(c => {
       return c.id === product.id;
@@ -53,15 +54,22 @@ class App extends React.Component {
       });
     }
     alertify.success(product.productName + " " + "added to your Cart!");
+    
   };
 
-  deleteAll = product => {
+
+  deleteAll = product=> {
     const notDeleted = this.state.Cart.filter(c => {
       return c.id !== product.id;
-    });
-    this.setState({
-      Cart: notDeleted
-    });
+    }); 
+      this.setState({
+        Cart: notDeleted,
+        total:0
+      });
+      setTimeout(() => {
+          this.totalPrice() 
+    }, 1)
+      alertify.error("All"+" "+product.productName + " " + "Deleted From Your Cart")
   };
 
   Reset = () => {
@@ -142,7 +150,7 @@ class App extends React.Component {
                   exact
                   path="/cart"
                   component={() => (
-                    <Cart Cart={this.state.Cart} addToCart={this.addToCart} total={this.state.total}/>
+                    <Cart Cart={this.state.Cart} addToCart={this.addToCart} total={this.state.total} deleteAll={this.deleteAll}/>
                   )}
                 ></Route>
                 <Route component={NotFound}></Route>

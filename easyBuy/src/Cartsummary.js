@@ -39,7 +39,6 @@ class Cartsummary extends Component {
           })}
           <DropdownItem divider />
           <DropdownItem onClick={() => this.props.Reset()}>
-            {" "}
             <Badge color="danger">Reset Your Cart !</Badge>
           </DropdownItem>
           <DropdownItem divider />

@@ -26,7 +26,7 @@ export default class Cart extends Component {
                   <td>{selectedItem.unitPrice}</td>
                   <td>{selectedItem.quantity}</td>
                   <td>
-                    <Button color="danger">Delete</Button>
+                    <Button color="danger" onClick={()=>this.props.deleteAll(selectedItem)}>Delete</Button>
                   </td>
                 </tr>
               );
