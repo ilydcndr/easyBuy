@@ -7,14 +7,14 @@ import alertify from "alertifyjs";
 import { Route, Switch } from "react-router-dom";
 import Cart from "./Cart";
 import NotFound from "./NotFound";
-import { confirmAlert } from 'react-confirm-alert';
+import { confirmAlert } from "react-confirm-alert";
 
 class App extends React.Component {
   state = {
     selectedCategory: "",
     products: [],
     Cart: [],
-    total:0
+    total: 0
   };
 
   componentDidMount() {
@@ -22,13 +22,22 @@ class App extends React.Component {
   }
 
   getProducts = categoryId => {
-    let url = "http://localhost:3000/products";
-    if (categoryId) {
-      url += "?categoryId=" + categoryId;
-    }
+    let url = "https://5df8f065e9f79e0014b6aac4.mockapi.io/products";
     fetch(url)
       .then(response => response.json())
-      .then(data => this.setState({ products: data }));
+      .then(data => {
+        if (categoryId) {
+          this.setState({
+            products: data.filter(p => {
+              return(p.categoryId === categoryId)
+            })
+          });
+        } else {
+          this.setState({
+            products: data
+          });
+        }
+      });
   };
 
   tiklandiginda = Categori => {
@@ -40,7 +49,6 @@ class App extends React.Component {
 
   /**ayni üründen 2 kere eklediğimde sepet toplam sayısında gözükmesin o ürünün quantity değeri artsın yani sepete girince görüntüleyelim */
   addToCart = product => {
-   
     const Cart = this.state.Cart;
     const addedProduct = Cart.find(c => {
       return c.id === product.id;
@@ -54,44 +62,44 @@ class App extends React.Component {
       });
     }
     alertify.success(product.productName + " " + "added to your Cart!");
-    
   };
 
-
-  deleteAll = product=> {
+  deleteAll = product => {
     const notDeleted = this.state.Cart.filter(c => {
       return c.id !== product.id;
-    }); 
-      this.setState({
-        total:0,
-        Cart: notDeleted
-      });
-      setTimeout(() => {
-          this.totalPrice() 
-    }, 1)
-      alertify.error("All"+" "+product.productName + " " + "Deleted From Your Cart")
+    });
+    this.setState({
+      total: 0,
+      Cart: notDeleted
+    });
+    setTimeout(() => {
+      this.totalPrice();
+    }, 1);
+    alertify.error(
+      "All" + " " + product.productName + " " + "Deleted From Your Cart"
+    );
   };
 
   Reset = () => {
     confirmAlert({
       title: <h1>Are You Sure ?</h1>,
-      message: 'You Will Reset Your Cart!',
+      message: "You Will Reset Your Cart!",
       buttons: [
         {
-          label: 'Yes',
+          label: "Yes",
           onClick: () => {
             this.setState({
-              Cart:[],
-              total:0
-            })
+              Cart: [],
+              total: 0
+            });
           }
         },
         {
-          label: 'No',
+          label: "No",
           onClick: () => {
             this.setState({
-              Cart:this.state.Cart
-            })
+              Cart: this.state.Cart
+            });
           }
         }
       ]
@@ -99,16 +107,16 @@ class App extends React.Component {
   };
 
   totalPrice = () => {
-    let total=0
+    let total = 0;
     this.state.Cart.forEach(selectedItem => {
       let quantity = selectedItem.quantity;
       let perPrice = selectedItem.unitPrice;
       this.setState({
-        total:total+=quantity *perPrice
+        total: (total += quantity * perPrice)
       });
     });
   };
-  
+
   render() {
     return (
       <div>
@@ -125,14 +133,14 @@ class App extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col xl="4">
+            <Col xl="4" lg="4" sm="4" md="4" xs="4">
               <Categories
                 title="Categories"
                 tiklandiginda={this.tiklandiginda}
                 selectedCategory={this.state.selectedCategory}
               />
             </Col>
-            <Col xl="8">
+            <Col xl="8" lg="8" sm="8" md="8" xs="8">
               <Switch>
                 <Route
                   exact
@@ -150,7 +158,12 @@ class App extends React.Component {
                   exact
                   path="/cart"
                   component={() => (
-                    <Cart Cart={this.state.Cart} addToCart={this.addToCart} total={this.state.total} deleteAll={this.deleteAll}/>
+                    <Cart
+                      Cart={this.state.Cart}
+                      addToCart={this.addToCart}
+                      total={this.state.total}
+                      deleteAll={this.deleteAll}
+                    />
                   )}
                 ></Route>
                 <Route component={NotFound}></Route>

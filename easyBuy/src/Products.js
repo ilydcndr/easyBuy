@@ -9,7 +9,7 @@ class Products extends Component {
           {this.props.title}--{this.props.selectedCategory}
         </h2>
 
-        <Table>
+        <Table responsive>
           <thead>
             <tr>
               <th>#</th>

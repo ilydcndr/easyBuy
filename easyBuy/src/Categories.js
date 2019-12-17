@@ -10,7 +10,7 @@ class Categories extends Component {
   }
 
   getCategories = () => {
-    fetch("http://localhost:3000/categories")
+    fetch("https://5df8f065e9f79e0014b6aac4.mockapi.io/categories")
       .then(response => response.json())
       .then(data => this.setState({ Categories: data }));
   };
